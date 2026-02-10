@@ -2,24 +2,12 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[project]
-name = "python-monorepo"
-version = "0.1.0"
-description = "A Python monorepo using uv workspaces"
-readme = "README.md"
-requires-python = ">=3.11"
-authors = [{name = "Developer", email = "dev@example.com"}]
-license = {text = "MIT"}
-
 [tool.uv]
 workspace = [
-    { path = "packages/my-library" },
-    { path = "packages/my-app" },
-    { path = "packages/my-cli" },
+    ["packages/my-library"],
+    ["packages/my-app"],
+    ["packages/my-cli"],
 ]
-
-[tool.uv.sources]
-my-library = { workspace = true }
 
 [dependency-groups]
 dev = [

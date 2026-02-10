@@ -6,7 +6,6 @@ build-backend = "hatchling.build"
 name = "my-app"
 version = "0.1.0"
 description = "An application that uses the shared library"
-readme = "README.md"
 requires-python = ">=3.11"
 authors = [{name = "Developer", email = "dev@example.com"}]
 license = {text = "MIT"}
