@@ -1,39 +1,28 @@
 API Reference
 =============
 
-This section contains the API documentation for Hildie packages.
+This section will contain the API documentation for Hildie packages.
 
 .. note::
-   Detailed API documentation will be added as the packages are developed.
+   API documentation will be auto-generated once the packages are installed.
+   For now, see the source code in the ``packages/`` directory.
 
 archive-git-forks
 -----------------
 
-.. automodule:: archive_git_forks
-   :members:
-   :undoc-members:
-   :show-inheritance:
+Tools for archiving Git fork repositories.
 
 my-library
 ----------
 
-.. automodule:: my_library
-   :members:
-   :undoc-members:
-   :show-inheritance:
+Core library functions and utilities.
 
 my-cli
 ------
 
-.. automodule:: my_cli
-   :members:
-   :undoc-members:
-   :show-inheritance:
+Command-line interface tools.
 
 my-app
 ------
 
-.. automodule:: my_app
-   :members:
-   :undoc-members:
-   :show-inheritance:
+Application utilities and helpers.

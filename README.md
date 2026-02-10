@@ -1,6 +1,26 @@
-# Hildie
+<p align="center">
+  <img src="hildie.jpeg" alt="Hildie" width="400">
+</p>
 
-A Python monorepo built with Bazel.
+<h1 align="center">Hildie</h1>
+
+<p align="center">
+  <em>A Python monorepo built with Bazel, named after the best dog.</em>
+</p>
+
+<p align="center">
+  <a href="https://pypi.org/project/hildie/"><img src="https://img.shields.io/pypi/v/hildie" alt="PyPI"></a>
+  <a href="https://pypi.org/project/hildie/"><img src="https://img.shields.io/pypi/pyversions/hildie" alt="Python"></a>
+  <a href="https://github.com/clintonsteiner/python-monorepo/actions"><img src="https://github.com/clintonsteiner/python-monorepo/actions/workflows/bazel.yml/badge.svg" alt="Build"></a>
+</p>
+
+---
+
+## About
+
+**Hildie** is a collection of Python utilities and tools, packaged as a single installable module. The project demonstrates a modern Python monorepo structure using Bazel for builds, testing, and publishing.
+
+Named after Hildie the dog, because all the good package names were taken.
 
 ## Installation
 
@@ -8,13 +28,22 @@ A Python monorepo built with Bazel.
 pip install hildie
 ```
 
+## Packages
+
+| Package | Description |
+|---------|-------------|
+| `hildie.hildie_library` | Core utility functions |
+| `hildie.hildie_app` | Application components |
+| `hildie.hildie_cli` | Command-line interface tools |
+| `hildie.hildie_archive_git_forks` | GitHub fork archiving utility |
+
 ## Usage
 
 ```python
 from hildie.hildie_library import add, multiply
-from hildie.hildie_app import App
-from hildie.hildie_cli.main import cli
-from hildie.hildie_archive_git_forks.archiver import GitHubForkArchiver
+
+result = add(2, 3)  # 5
+product = multiply(4, 5)  # 20
 ```
 
 ## Development
@@ -22,29 +51,21 @@ from hildie.hildie_archive_git_forks.archiver import GitHubForkArchiver
 ### Prerequisites
 
 - [Bazelisk](https://github.com/bazelbuild/bazelisk) (recommended) or Bazel 7+
-- Python 3.12+
+- Python 3.11+
 
-### Build
+### Commands
 
 ```bash
+# Build everything
 bazel build //...
-```
 
-### Test
-
-```bash
+# Run tests
 bazel test //...
-```
 
-### Build wheel
-
-```bash
+# Build wheel
 bazel build //:wheel
-```
 
-### Run CLIs
-
-```bash
+# Run CLIs
 bazel run //:hildie-cli
 bazel run //:hildie-archive-git-forks
 ```
@@ -57,11 +78,7 @@ bazel run //:hildie-archive-git-forks
 │   ├── hildie_app/                # Application
 │   ├── hildie_cli/                # CLI tool
 │   └── hildie_archive_git_forks/  # Git fork archiver
-├── packages/                      # Test directories
-│   ├── my-library/tests/
-│   ├── my-app/tests/
-│   ├── my-cli/tests/
-│   └── archive-git-forks/tests/
+├── packages/                      # Tests
 ├── tools/                         # Build macros
 ├── BUILD.bazel                    # Root build file
 └── MODULE.bazel                   # Bazel module definition
@@ -76,25 +93,9 @@ git tag v0.2.0
 git push origin v0.2.0
 ```
 
-The version is automatically extracted from the tag.
+## Maintainer
 
-## Documentation
-
-Full documentation is available in the `docs/` directory. To build and view:
-
-```bash
-# Install documentation dependencies
-uv pip install -e ".[docs]"
-
-# Build the docs
-cd docs
-make html
-
-# Open in browser
-open build/html/index.html
-```
-
-The documentation includes the story behind the name "Hildie" - since all the good package names were taken, this project is named after Hildie, the best dog!
+**Clinton Steiner** - [clintonsteiner@gmail.com](mailto:clintonsteiner@gmail.com)
 
 ## License
 
