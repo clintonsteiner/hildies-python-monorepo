@@ -6,7 +6,10 @@ py_binary(
     name = "sphinx_build",
     srcs = ["sphinx_build.py"],
     main = "sphinx_build.py",
-    deps = ["@pip_docs//sphinx"],
+    deps = [
+        "@pip_docs//sphinx",
+        "@pip_docs//sphinx_rtd_theme",
+    ],
 )
 
 genrule(
