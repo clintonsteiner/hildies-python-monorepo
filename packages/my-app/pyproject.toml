@@ -3,22 +3,22 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "my-app"
+name = "cosi-app"
 version = "0.1.0"
 description = "An application that uses the shared library"
 requires-python = ">=3.11"
-authors = [{name = "Developer", email = "dev@example.com"}]
+authors = [{name = "Clinton Steiner", email = "clintonsteiner@gmail.com"}]
 license = {text = "MIT"}
 dependencies = [
-    "my-library>=0.1.0",
+    "cosi-library>=0.1.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/example/python-monorepo"
-Repository = "https://github.com/example/python-monorepo"
+Homepage = "https://github.com/clintonsteiner/python-monorepo"
+Repository = "https://github.com/clintonsteiner/python-monorepo"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/my_app"]
+packages = ["src/cosi"]
 
 [dependency-groups]
 dev = [

@@ -3,26 +3,26 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "my-cli"
+name = "cosi-cli"
 version = "0.1.0"
 description = "A CLI tool that uses the shared library"
 requires-python = ">=3.11"
-authors = [{name = "Developer", email = "dev@example.com"}]
+authors = [{name = "Clinton Steiner", email = "clintonsteiner@gmail.com"}]
 license = {text = "MIT"}
 dependencies = [
-    "my-library>=0.1.0",
+    "cosi-library>=0.1.0",
     "click>=8.1.0",
 ]
 
 [project.scripts]
-my-cli = "my_cli.main:cli"
+cosi-cli = "cosi.cli.main:cli"
 
 [project.urls]
-Homepage = "https://github.com/example/python-monorepo"
-Repository = "https://github.com/example/python-monorepo"
+Homepage = "https://github.com/clintonsteiner/python-monorepo"
+Repository = "https://github.com/clintonsteiner/python-monorepo"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/my_cli"]
+packages = ["src/cosi"]
 
 [dependency-groups]
 dev = [

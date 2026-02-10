@@ -1,6 +1,6 @@
 """Tests for my_library module."""
 
-from my_library import add, multiply
+from cosi.library import add, multiply
 
 
 class TestMath:

@@ -6,19 +6,19 @@ build-backend = "hatchling.build"
 members = ["packages/*"]
 
 [tool.uv.sources]
-my-library = { workspace = true }
-my-app = { workspace = true }
-my-cli = { workspace = true }
-archive-git-forks = { workspace = true }
+cosi-library = { workspace = true }
+cosi-app = { workspace = true }
+cosi-cli = { workspace = true }
+cosi-archive-git-forks = { workspace = true }
 
 [dependency-groups]
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
     "ruff>=0.4.0",
-    "my-app",
-    "my-cli",
-    "archive-git-forks",
+    "cosi-app",
+    "cosi-cli",
+    "cosi-archive-git-forks",
 ]
 
 [tool.pytest.ini_options]

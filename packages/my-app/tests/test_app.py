@@ -1,6 +1,6 @@
 """Tests for my_app module."""
 
-from my_app import process_numbers
+from cosi.app import process_numbers
 
 
 class TestApp:
