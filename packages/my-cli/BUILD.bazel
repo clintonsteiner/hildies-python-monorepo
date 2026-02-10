@@ -40,7 +40,7 @@ test_suite(
 
 py_wheel(
     name = "wheel",
-    distribution = "hildie_cli",
+    distribution = "hildie-cli",
     version = "0.1.0",
     python_tag = "py3",
     deps = [":hildie_cli"],

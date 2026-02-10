@@ -28,7 +28,7 @@ test_suite(
 
 py_wheel(
     name = "wheel",
-    distribution = "hildie_library",
+    distribution = "hildie-library",
     version = "0.1.0",
     python_tag = "py3",
     deps = [":hildie_library"],

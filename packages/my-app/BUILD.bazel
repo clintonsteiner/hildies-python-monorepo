@@ -31,7 +31,7 @@ test_suite(
 
 py_wheel(
     name = "wheel",
-    distribution = "hildie_app",
+    distribution = "hildie-app",
     version = "0.1.0",
     python_tag = "py3",
     deps = [":hildie_app"],
