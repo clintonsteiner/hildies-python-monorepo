@@ -2,12 +2,24 @@
 
 This guide shows how to add a new package "hildie-web" that depends on the hildie library but has its own dependencies (Flask).
 
-## Option 1: Share the Main Requirements File (Recommended for Simple Cases)
+## Option 1: Share the Main pyproject.toml (Recommended for Simple Cases)
 
-### 1. Add dependencies to `lock_requirements.txt`
-```txt
-# Add your new dependencies
-flask==3.0.0
+### 1. Add dependencies to `pyproject.toml`
+```toml
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.15.0",
+]
+web = [
+    "flask>=3.0.0",
+]
+```
+
+Then regenerate the lock file:
+```bash
+uv pip compile pyproject.toml --extra dev --extra web -o requirements_lock.txt
 ```
 
 ### 2. Create source code structure
@@ -114,9 +126,12 @@ all_package_tests(
 )
 ```
 
-### 7. Update lock file and build
+### 7. Regenerate lock file and build
 ```bash
-bazel run @pip//:requirements.update
+# Regenerate lock file from pyproject.toml
+uv pip compile pyproject.toml --extra dev --extra web -o requirements_lock.txt
+
+# Build and test
 bazel build //packages/web:tests
 bazel test //packages/web:tests
 bazel run //:hildie-web -- --port 8080
@@ -124,25 +139,24 @@ bazel run //:hildie-web -- --port 8080
 
 ---
 
-## Option 2: Separate Requirements File (Recommended for Complex Dependencies)
+## Option 2: Separate pyproject.toml (Recommended for Complex Dependencies)
 
-### 1. Create separate requirements file
+### 1. Create separate pyproject.toml for the package
 
-Create `packages/web/requirements.txt`:
-```txt
-flask==3.0.0
-werkzeug==3.0.0
+Create `packages/web/pyproject.toml`:
+```toml
+[project]
+name = "hildie-web"
+dependencies = [
+    "flask>=3.0.0",
+    "hildie",  # depends on main package
+]
+requires-python = ">=3.11"
 ```
 
-Create `packages/web/lock_requirements.txt` (run `pip-compile` or manually):
-```txt
-flask==3.0.0
-werkzeug==3.0.0
-blinker==1.7.0
-click==8.1.7
-itsdangerous==2.1.2
-jinja2==3.1.2
-markupsafe==2.1.3
+Generate lock file:
+```bash
+uv pip compile packages/web/pyproject.toml -o packages/web/requirements_lock.txt
 ```
 
 ### 2. Update `MODULE.bazel` to add new pip hub
@@ -151,18 +165,18 @@ pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 pip.parse(
     hub_name = "pip",
     python_version = "3.12",
-    requirements_lock = "//:lock_requirements.txt",
+    requirements_lock = "//:requirements_lock.txt",
 )
 pip.parse(
     hub_name = "pip_docs",
     python_version = "3.12",
-    requirements_lock = "//docs:lock_requirements.txt",
+    requirements_lock = "//:requirements_docs_lock.txt",
 )
-# Add new pip hub for web package
+# Add new pip hub for web package (from packages/web/pyproject.toml)
 pip.parse(
     hub_name = "pip_web",
     python_version = "3.12",
-    requirements_lock = "//packages/web:lock_requirements.txt",
+    requirements_lock = "//packages/web:requirements_lock.txt",
 )
 use_repo(pip, "pip", "pip_docs", "pip_web")
 ```
@@ -206,8 +220,8 @@ py_binary(
 ├── packages/
 │   └── web/                 # Tests
 │       ├── BUILD.bazel
-│       ├── requirements.txt (Option 2 only)
-│       ├── lock_requirements.txt (Option 2 only)
+│       ├── pyproject.toml (Option 2 only)
+│       ├── requirements_lock.txt (Option 2 only)
 │       └── tests/
 │           └── test_web.py
 ├── BUILD.bazel              # Add binary + test suite
@@ -228,22 +242,22 @@ bazel test //:all_tests
 # Run the CLI
 bazel run //:hildie-web
 
-# Update dependencies (Option 1)
-bazel run @pip//:requirements.update
+# Update dependencies (Option 1 - regenerate from root pyproject.toml)
+uv pip compile pyproject.toml --extra dev --extra web -o requirements_lock.txt
 
-# Update dependencies (Option 2)
-bazel run @pip_web//:requirements.update
+# Update dependencies (Option 2 - regenerate from package pyproject.toml)
+uv pip compile packages/web/pyproject.toml -o packages/web/requirements_lock.txt
 ```
 
 ### When to Use Which Option?
 
-**Option 1 (Shared requirements):**
+**Option 1 (Shared pyproject.toml):**
 - ✅ Simple, fewer files
 - ✅ Good for packages with overlapping dependencies
-- ✅ Easier to manage
+- ✅ Easier to manage - single pyproject.toml
 - ❌ All packages share same dependency versions
 
-**Option 2 (Separate requirements):**
+**Option 2 (Separate pyproject.toml):**
 - ✅ Isolated dependency versions per package
 - ✅ Better for conflicting dependency requirements
 - ✅ Clearer dependency boundaries

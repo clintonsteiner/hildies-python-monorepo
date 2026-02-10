@@ -26,6 +26,19 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.15.0",
+]
+docs = [
+    "sphinx>=9.0.4",
+    "sphinx-rtd-theme>=3.0.0",
+    "sphinxcontrib-jquery",
+    "roman",
+]
+
 [project.urls]
 Homepage = "https://github.com/clintonsteiner/python-monorepo"
 Repository = "https://github.com/clintonsteiner/python-monorepo"

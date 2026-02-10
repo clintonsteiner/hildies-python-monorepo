@@ -12,9 +12,6 @@ uv pip install -e ".[docs]"
 
 # Or using pip
 pip install -e ".[docs]"
-
-# Or install directly from requirements
-pip install -r requirements.txt
 ```
 
 ### Build HTML Documentation
