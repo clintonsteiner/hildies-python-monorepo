@@ -77,7 +77,7 @@ jobs:
           echo "dir=$DIR" >> $GITHUB_OUTPUT
 
       - name: Build ${{ matrix.package }}
-        run: uv build ${{ steps.find-dir.outputs.dir }}
+        run: uv build ${{ steps.find-dir.outputs.dir }} --out-dir ${{ steps.find-dir.outputs.dir }}/dist
 
       - name: Publish ${{ matrix.package }} to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
