@@ -5,7 +5,6 @@ on:
     branches: [master, develop]
     tags:
       - "v*"
-      - "*-v*"
   pull_request:
     branches: [master, develop]
 
@@ -25,12 +24,12 @@ jobs:
       - name: Run tests
         run: bazel test //...
 
-      - name: Build all wheels
-        run: bazel build $(bazel query 'kind("py_wheel", //packages/...)')
+      - name: Build wheel
+        run: bazel build //:wheel
 
   publish:
     needs: test
-    if: startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -45,30 +44,13 @@ jobs:
           disk-cache: ${{ github.workflow }}
           repository-cache: true
 
-      - name: Determine packages to publish
-        id: packages
-        run: |
-          TAG=${{ github.ref_name }}
-          if [[ $TAG == v* ]] && [[ $TAG != *-v* ]]; then
-            echo "targets=//packages/my-library:wheel //packages/my-app:wheel //packages/my-cli:wheel //packages/archive-git-forks:wheel" >> $GITHUB_OUTPUT
-          else
-            PACKAGE_NAME=$(echo "$TAG" | sed 's/-v[0-9.]*$//')
-            case "$PACKAGE_NAME" in
-              hildie-library) echo "targets=//packages/my-library:wheel" >> $GITHUB_OUTPUT ;;
-              hildie-app) echo "targets=//packages/my-app:wheel" >> $GITHUB_OUTPUT ;;
-              hildie-cli) echo "targets=//packages/my-cli:wheel" >> $GITHUB_OUTPUT ;;
-              hildie-archive-git-forks) echo "targets=//packages/archive-git-forks:wheel" >> $GITHUB_OUTPUT ;;
-              *) echo "Unknown package: $PACKAGE_NAME"; exit 1 ;;
-            esac
-          fi
+      - name: Build wheel
+        run: bazel build //:wheel
 
-      - name: Build wheels
-        run: bazel build ${{ steps.packages.outputs.targets }}
-
-      - name: Collect wheels
+      - name: Collect wheel
         run: |
           mkdir -p dist
-          find bazel-bin/packages -name "*.whl" -exec cp {} dist/ \;
+          cp bazel-bin/hildie-*.whl dist/
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

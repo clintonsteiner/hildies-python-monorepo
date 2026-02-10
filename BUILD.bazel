@@ -1,6 +1,7 @@
 """Root BUILD file for Hildie monorepo."""
 
 load("@rules_python//python:defs.bzl", "py_library")
+load("@rules_python//python:packaging.bzl", "py_wheel")
 
 # Root hildie namespace package
 py_library(
@@ -18,5 +19,24 @@ test_suite(
         "//packages/my-app:tests",
         "//packages/my-cli:tests",
         "//packages/archive-git-forks:tests",
+    ],
+)
+
+# Single wheel containing all hildie subpackages
+py_wheel(
+    name = "wheel",
+    distribution = "hildie",
+    version = "0.1.0",
+    python_tag = "py3",
+    requires = [
+        "click",
+        "requests",
+    ],
+    deps = [
+        ":hildie",
+        "//packages/my-library:hildie_library",
+        "//packages/my-app:hildie_app",
+        "//packages/my-cli:hildie_cli",
+        "//packages/archive-git-forks:hildie_archive_git_forks",
     ],
 )

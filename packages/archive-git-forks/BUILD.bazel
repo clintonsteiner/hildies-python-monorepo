@@ -1,7 +1,6 @@
 """BUILD file for hildie-archive-git-forks package."""
 
 load("@rules_python//python:defs.bzl", "py_binary", "py_library")
-load("@rules_python//python:packaging.bzl", "py_wheel")
 load("//tools:pytest.bzl", "pytest_tests")
 
 py_library(
@@ -30,12 +29,4 @@ pytest_tests(
         ":hildie_archive_git_forks",
         "@pip//click",
     ],
-)
-
-py_wheel(
-    name = "wheel",
-    distribution = "hildie-archive-git-forks",
-    version = "0.1.0",
-    python_tag = "py3",
-    deps = [":hildie_archive_git_forks"],
 )
