@@ -42,11 +42,13 @@ jobs:
       - name: Build documentation with Bazel
         run: |
           bazel build //docs:html
+          mkdir -p docs_output
+          tar -xzf bazel-bin/docs/html_docs.tar.gz -C docs_output
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: bazel-bin/docs/build/html
+          path: docs_output/html
 
   deploy:
     environment:

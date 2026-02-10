@@ -1,6 +1,7 @@
 """Documentation build rules for Hildie."""
 
 load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 
 # Sphinx builder wrapper
 py_binary(
@@ -38,11 +39,12 @@ genrule(
         "source/.nojekyll",
         "//:hildie",
     ],
-    outs = ["build/html/index.html"],
+    outs = ["html_docs.tar.gz"],
     cmd = """
         # Set up directories
-        BUILDDIR=$$(dirname $@)
-        SRCDIR=$$BUILDDIR/../source
+        TMPDIR=$$(mktemp -d)
+        BUILDDIR=$$TMPDIR/html
+        SRCDIR=$$TMPDIR/source
         mkdir -p $$SRCDIR/_static
 
         # Copy source files maintaining structure
@@ -60,6 +62,12 @@ genrule(
             -b html \
             $$SRCDIR \
             $$BUILDDIR
+
+        # Create tarball of the generated docs
+        tar -czf $@ -C $$TMPDIR html
+
+        # Cleanup
+        rm -rf $$TMPDIR
     """,
     tools = [":sphinx_build"],
     visibility = ["//visibility:public"],
@@ -70,4 +78,11 @@ alias(
     name = "html",
     actual = ":docs",
     visibility = ["//visibility:public"],
+)
+
+# Shell script to extract and view docs locally
+sh_binary(
+    name = "serve_docs",
+    srcs = ["serve_docs.sh"],
+    data = [":docs"],
 )

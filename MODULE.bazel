@@ -18,11 +18,11 @@ pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 pip.parse(
     hub_name = "pip",
     python_version = "3.12",
-    requirements_lock = "//:requirements_lock.txt",
+    requirements_lock = "//:lock_requirements.txt",
 )
 pip.parse(
     hub_name = "pip_docs",
     python_version = "3.12",
-    requirements_lock = "//docs:requirements_lock.txt",
+    requirements_lock = "//docs:lock_requirements.txt",
 )
 use_repo(pip, "pip", "pip_docs")

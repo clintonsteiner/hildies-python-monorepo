@@ -1747,7 +1747,7 @@
         "bzlTransitiveDigest": "7BGsN9w4w2D9WpnAs7Ikstbbi47ezJlgkL+u6zYLmW4=",
         "accumulatedFileDigests": {
           "@@//docs:requirements_lock.txt": "1c51c4a18d6e26c0266565cc4c613f2c1da5ca1c4345a436cbf92c187d2b995b",
-          "@@//:requirements_lock.txt": "4e3bb5efb5f9f70f642a98b931f617187667e08223966afb567f83177fea2750"
+          "@@//:requirements_lock.txt": "0f0b45ca7c3eafc688ae558eb0b1ea314a616a192fa634d64420f5aee92e4198"
         },
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -2526,7 +2526,7 @@
             "ruleClassName": "whl_library",
             "attributes": {
               "name": "rules_python~0.31.0~pip~pip_312_iniconfig",
-              "requirement": "iniconfig==2.0.0",
+              "requirement": "iniconfig==2.3.0",
               "repo": "pip_312",
               "repo_prefix": "pip_312_",
               "whl_patches": {},
@@ -2701,7 +2701,7 @@
             "ruleClassName": "whl_library",
             "attributes": {
               "name": "rules_python~0.31.0~pip~pip_312_pluggy",
-              "requirement": "pluggy==1.4.0",
+              "requirement": "pluggy==1.6.0",
               "repo": "pip_312",
               "repo_prefix": "pip_312_",
               "whl_patches": {},
