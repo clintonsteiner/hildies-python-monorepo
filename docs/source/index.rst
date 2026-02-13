@@ -8,7 +8,7 @@ Welcome to Hildie's Documentation!
 
 Hildie is a Python monorepo containing a collection of utilities and tools.
 
-.. image:: https://img.shields.io/pypi/v/hildie.svg
+.. image:: https://img.shields.io/pypi/pyversions/hildie
    :alt: PyPI Version
 .. image:: https://img.shields.io/pypi/v/hildie
    :alt: Python Versions
@@ -25,10 +25,12 @@ Hildie is a Python monorepo containing a collection of utilities and tools.
    :maxdepth: 2
    :caption: Contents:
 
-   about
    installation
    packages
    api
+   about
+   PyPI <https://pypi.org/project/hildie/>
+   Github <https://github.com/clintonsteiner/hildies-python-monorepo>
 
 Quick Start
 -----------
