@@ -10,7 +10,6 @@ py_binary(
         "@pip_docs//roman",
         "@pip_docs//sphinx",
         "@pip_docs//sphinx_rtd_theme",
-        "@pip_docs//sphinx_toolbox",
     ],
 )
 

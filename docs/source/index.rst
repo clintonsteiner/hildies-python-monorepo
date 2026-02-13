@@ -8,6 +8,15 @@ Welcome to Hildie's Documentation!
 
 Hildie is a Python monorepo containing a collection of utilities and tools.
 
+.. image:: https://img.shields.io/pypi/v/hildie.svg
+   :alt: PyPI Version
+.. image:: https://img.shields.io/pypi/pyversions/hildie.svg
+   :alt: Python Versions
+.. image:: https://img.shields.io/github/actions/workflow/status/clintonsteiner/hildies-python-monorepo/bazel.yml?branch=master&label=passing&color=brightgreen
+   :alt: Build Status
+.. image:: https://img.shields.io/github/license/clintonsteiner/hildies-python-monorepo
+   :alt: License
+
 .. note::
    **Why "Hildie"?** All the good package names were taken, so this project is named
    after Hildie, the best dog. See :doc:`about` for the full story!
