@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.hildie</groupId>
+  <artifactId>hildie-java-lib</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+
+  <name>Hildie Java Library</name>
+  <description>Hildie multi-language monorepo Java library</description>
+  <url>https://github.com/clintonsteiner/python-monorepo</url>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Hildie Contributors</name>
+      <email>contributors@hildie.dev</email>
+      <organization>Hildie</organization>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/clintonsteiner/python-monorepo.git</connection>
+    <developerConnection>scm:git:https://github.com/clintonsteiner/python-monorepo.git</developerConnection>
+    <url>https://github.com/clintonsteiner/python-monorepo</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/clintonsteiner/python-monorepo/issues</url>
+  </issueManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>https://central.sonatype.com/api/v1/publisher/upload</url>
+    </repository>
+    <snapshotRepository>
+      <id>central</id>
+      <name>Central Snapshot Repository</name>
+      <url>https://central.sonatype.com/api/v1/publisher/upload</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>17</maven.compiler.release>
+  </properties>
+
+  <dependencies>
+    <!-- Testing only -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+
+    <plugins>
+      <!-- Compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>17</source>
+          <target>17</target>
+          <release>17</release>
+        </configuration>
+      </plugin>
+
+      <!-- Source JAR -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Javadoc JAR -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <source>17</source>
+          <detectJavaApiLink>true</detectJavaApiLink>
+        </configuration>
+      </plugin>
+
+      <!-- GPG Sign -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+            <configuration>
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Deploy -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.1.1</version>
+        <configuration>
+          <retryFailedDeploymentCount>3</retryFailedDeploymentCount>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

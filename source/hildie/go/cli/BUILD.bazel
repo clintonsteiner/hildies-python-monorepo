@@ -1,0 +1,8 @@
+# Go builds are handled via go build (see ../go.mod)
+# To build: go build -o hildie-go-cli ./
+
+filegroup(
+    name = "hildie-go-cli",
+    srcs = glob(["*.go"]),
+    visibility = ["//visibility:public"],
+)

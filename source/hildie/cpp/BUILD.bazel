@@ -1,0 +1,10 @@
+# C++ components for Hildie
+
+filegroup(
+    name = "cpp_source",
+    srcs = [
+        "hildie.cpp",
+        "hildie.h",
+    ],
+    visibility = ["//visibility:public"],
+)

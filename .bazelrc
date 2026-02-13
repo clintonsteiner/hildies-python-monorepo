@@ -1,4 +1,4 @@
-# Bazel configuration for Hildie monorepo
+# Bazel configuration for Hildie multi-language monorepo
 
 # Test output
 test --test_output=errors
@@ -9,3 +9,19 @@ build:ci --disk_cache=~/.cache/bazel-disk
 
 # Release builds
 build:release --stamp
+
+# ===== Java Configuration =====
+build:java --java_language_version=17
+build:java --java_runtime_version=17
+build:java --tool_java_language_version=17
+build:java --tool_java_runtime_version=17
+
+# ===== Go Configuration =====
+build:go --@rules_go//go/config:strip
+build:go --@rules_go//go/config:race=off
+
+# ===== Rust Configuration =====
+build:rust --@rules_rust//rust/settings:extra_rustc_flags=-C,opt-level=3
+
+# Multi-language build
+build:release --config=java --config=go --config=rust

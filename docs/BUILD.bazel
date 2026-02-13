@@ -1,52 +1,18 @@
-"""Documentation build rules for Hildie."""
+"""Documentation build configuration."""
 
-load("@rules_python//python:defs.bzl", "py_binary")
-
-py_binary(
-    name = "sphinx_build",
-    srcs = ["sphinx_build.py"],
-    main = "sphinx_build.py",
-    deps = [
-        "@pip_docs//roman",
-        "@pip_docs//sphinx",
-        "@pip_docs//sphinx_rtd_theme",
-    ],
-)
-
-genrule(
+filegroup(
     name = "docs",
-    srcs = glob([
-        "source/**/*.rst",
-        "source/**/*.py",
-        "source/**/*.png",
-        "source/_static/**/*",
-    ]) + [
-        "source/.nojekyll",
-        "//:hildie",
-    ],
-    outs = ["html_docs.tar.gz"],
-    cmd = """
-        TMPDIR=$$(mktemp -d)
-        SRCDIR=$$TMPDIR/source
-        mkdir -p $$SRCDIR/_static
-
-        for src in $(SRCS); do
-            [[ $$src == */source/* ]] && {
-                rel=$${src#*docs/source/}
-                mkdir -p $$(dirname $$SRCDIR/$$rel)
-                cp $$src $$SRCDIR/$$rel
-            }
-        done
-
-        PYTHONPATH=$$(pwd) $(location :sphinx_build) -b html $$SRCDIR $$TMPDIR/html
-        tar -czf $@ -C $$TMPDIR html
-        rm -rf $$TMPDIR
-    """,
-    tools = [":sphinx_build"],
+    srcs = glob(
+        ["*.md"],
+        allow_empty = True,
+    ),
     visibility = ["//visibility:public"],
 )
 
-alias(
-    name = "html",
-    actual = ":docs",
+filegroup(
+    name = "docs_config",
+    srcs = [
+        "pyproject.toml",
+    ],
+    visibility = ["//visibility:public"],
 )

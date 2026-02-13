@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hildie-bindings"
+version = "0.1.0"
+description = "Python bindings for Hildie Rust, Go, and C++ components"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Hildie Contributors", email = "contributors@hildie.dev"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.urls]
+"Bug Tracker" = "https://github.com/clintonsteiner/python-monorepo/issues"
+"Documentation" = "https://github.com/clintonsteiner/python-monorepo"
+"Source Code" = "https://github.com/clintonsteiner/python-monorepo"
+
+[tool.setuptools]
+packages = ["hildie_bindings"]
+
+[tool.setuptools.package-data]
+hildie_bindings = [
+    "lib/*.so",
+    "lib/*.dylib",
+    "lib/*.dll",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-v --strict-markers"
+
+[tool.coverage.run]
+source = ["hildie_bindings"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

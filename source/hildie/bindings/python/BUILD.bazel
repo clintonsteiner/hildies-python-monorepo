@@ -1,0 +1,26 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("@rules_python//python:packaging.bzl", "py_wheel")
+
+py_library(
+    name = "hildie_bindings",
+    srcs = glob(
+        [
+            "hildie_bindings/**/*.py",
+            "!hildie_bindings/**/*_test.py",
+        ],
+        allow_empty = True,
+    ),
+    imports = ["."],
+    visibility = ["//visibility:public"],
+)
+
+py_wheel(
+    name = "wheel",
+    description_file = "README.md",
+    distribution = "hildie-bindings",
+    python_requires = ">=3.9",
+    python_tag = "py3",
+    strip_path_prefixes = ["source/hildie/bindings/python/"],
+    version = "0.1.0",
+    deps = [":hildie_bindings"],
+)

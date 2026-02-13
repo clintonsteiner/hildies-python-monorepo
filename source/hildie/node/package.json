@@ -1,0 +1,37 @@
+{
+  "name": "hildie",
+  "version": "0.1.0",
+  "description": "Hildie - Multi-language CLI and library tools",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./lib": {
+      "import": "./dist/lib.js",
+      "types": "./dist/lib.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test dist/**/*.test.js",
+    "prepublishOnly": "npm run build",
+    "app": "node dist/app.js",
+    "cli": "node dist/cli.js"
+  },
+  "keywords": [
+    "hildie",
+    "cli",
+    "library",
+    "typescript"
+  ],
+  "author": "Hildie Contributors",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

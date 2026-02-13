@@ -1,0 +1,10 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "test_bindings",
+    srcs = ["test_bindings.py"],
+    deps = [
+        "//source/hildie/bindings/python:hildie_bindings",
+        "@pip//pytest",
+    ],
+)

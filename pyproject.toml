@@ -31,17 +31,21 @@ dependencies = [
 dynamic = ["version"]
 
 [build-system]
-requires = ["setuptools>=42", "setuptools-scm>=6.2", "wheel"]
+requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
 check-unittest-super = "hildie.check_unittest_super:main"
 
 [project.optional-dependencies]
+bindings = [
+    "hildie-bindings>=0.1.0",
+]
 dev = [
     "pytest>=8.0.0",
     "pytest-cov>=4.1.0",
     "ruff>=0.15.0",
+    "ipython>=8.0.0",
 ]
 docs = [
     "sphinx",

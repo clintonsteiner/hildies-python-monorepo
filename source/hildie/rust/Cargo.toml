@@ -1,0 +1,9 @@
+[workspace]
+members = ["hildie-lib", "hildie-app", "hildie-cli"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Hildie Contributors"]
+license = "MIT"

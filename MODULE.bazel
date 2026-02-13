@@ -1,10 +1,11 @@
-"""Hildie Python Monorepo"""
+"""Hildie Multi-Language Monorepo"""
 
 module(
     name = "hildie",
     version = "0.1.0",
 )
 
+# ===== Python =====
 # https://registry.bazel.build/modules/rules_python
 bazel_dep(name = "rules_python", version = "1.8.4")
 
@@ -30,3 +31,30 @@ pip.parse(
     requirements_lock = "//:requirements_docs_lock.txt",
 )
 use_repo(pip, "pip", "pip_docs")
+
+# ===== Java =====
+bazel_dep(name = "rules_jvm_external", version = "6.7")
+bazel_dep(name = "rules_java", version = "9.0.3")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "maven",
+    artifacts = [
+        "junit:junit:4.13.2",
+        "org.junit.jupiter:junit-jupiter-api:5.9.2",
+        "org.junit.jupiter:junit-jupiter-engine:5.9.2",
+    ],
+)
+use_repo(maven, "maven")
+
+# ===== Go =====
+# Go builds are handled via go build (src/hildie/go/go.mod)
+# Bazel is used for artifact collection and publishing
+
+# ===== Rust =====
+# Rust compilation disabled for now - use cargo directly for Rust builds
+# bazel_dep(name = "rules_rust", version = "0.40.0")
+
+# ===== Node.js / npm =====
+# npm packages are built with standard npm tools (npm run build)
+# Bazel is used for artifact collection and publishing

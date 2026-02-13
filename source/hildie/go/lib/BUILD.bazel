@@ -1,0 +1,9 @@
+# Go builds are handled via go build (see ../go.mod)
+# To build: go build ./...
+# To test: go test ./...
+
+filegroup(
+    name = "lib",
+    srcs = glob(["*.go"]),
+    visibility = ["//visibility:public"],
+)

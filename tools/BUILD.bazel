@@ -1,6 +1,0 @@
-"""Bazel tooling and macros."""
-
-exports_files([
-    "pytest.bzl",
-    "hildie.bzl",
-])

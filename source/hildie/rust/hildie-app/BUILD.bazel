@@ -1,0 +1,8 @@
+# Rust builds are handled via cargo (see ../Cargo.toml)
+# To build: cargo build -p hildie-app --release
+
+filegroup(
+    name = "hildie-app",
+    srcs = glob(["src/**/*.rs"]),
+    visibility = ["//visibility:public"],
+)

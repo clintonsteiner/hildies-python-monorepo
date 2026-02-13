@@ -22,17 +22,26 @@ Why "Hildie"? Because all the good package names were taken, so this project is 
 ## Installation
 
 ```bash
+# Install main hildie package
 pip install hildie
+
+# Install hildie with optional Python bindings (Rust, Go, C++)
+pip install hildie[bindings]
 ```
 
 ## Features
 
 - **Modular Design**: Multiple sub-packages under a single namespace
+- **Multi-Language**: Rust, Go, Node.js, Java, and C++ implementations
+- **Python Bindings**: Use Rust, Go, and C++ directly from Python via PyO3 and ctypes
+- **IPython/Jupyter Support**: Full support for interactive environments
 - **Bazel Build System**: Fast, reproducible builds with caching
-- **Automated Publishing**: Tag a release and it's automatically published to PyPI
-- **Fully Tested**: Comprehensive test coverage across all packages
+- **Automated Publishing**: Tag a release and it's automatically published to PyPI, npm, Maven, crates.io
+- **Fully Tested**: Comprehensive test coverage across all packages and languages
 
 ## Packages
+
+### Python Packages
 
 | Package | Description |
 |---------|-------------|
@@ -40,6 +49,17 @@ pip install hildie
 | `hildie.hildie_app` | Application components for data processing |
 | `hildie.hildie_cli` | Command-line interface tools |
 | `hildie.hildie_archive_git_forks` | Utility for archiving GitHub forks |
+| `hildie_bindings` | Python bindings for Rust, Go, and C++ (optional) |
+
+### Other Languages
+
+| Language | Package | Registry |
+|----------|---------|----------|
+| **Java** | hildie-java-lib | Maven Central |
+| **Go** | hildie-go | pkg.go.dev |
+| **Rust** | hildie-* | crates.io |
+| **JavaScript** | @hildie/* | npm |
+| **C++** | hildie-cpp | (native library) |
 
 ## Quick Start
 
@@ -78,6 +98,45 @@ from hildie.hildie_archive_git_forks.archiver import GitHubForkArchiver
 archiver = GitHubForkArchiver(token="your-github-token")
 archiver.archive_forks("username")
 ```
+
+### Python Bindings (Multi-Language)
+
+With the `hildie[bindings]` extra, use Rust, Go, and C++ from Python:
+
+```python
+from hildie_bindings import (
+    greet_rust, add_rust,              # Rust bindings (PyO3)
+    greet_go, add_go,                   # Go bindings (ctypes)
+    process_data, compute_factorial     # C++ bindings (ctypes)
+)
+
+# Use Rust functions
+print(greet_rust("Hildie"))  # "Hello, Hildie!"
+print(add_rust(5, 10))       # 15
+
+# Use Go functions
+print(greet_go("Gophers"))   # "Hello, Gophers!"
+print(add_go(100, 200))      # 300
+
+# Use C++ functions
+print(process_data([1, 2, 3, 4, 5]))    # [2, 4, 6, 8, 10]
+print(compute_factorial(5))              # 120
+```
+
+#### In IPython/Jupyter
+
+Bindings work seamlessly in interactive environments:
+
+```python
+# In IPython or Jupyter - just import and use!
+from hildie_bindings import greet_rust, add_rust
+
+# Results displayed immediately
+greet_rust("World")
+add_rust(42, 8)
+```
+
+See [Interactive Demo](source/hildie/bindings/python/examples/Interactive_Demo.ipynb) for a complete Jupyter notebook.
 
 ## API Reference
 
@@ -135,21 +194,36 @@ bazel run //:hildie-archive-git-forks
 
 ```
 hildie/
-├── src/hildie/                    # Source code
-│   ├── __init__.py
-│   ├── hildie_library/            # Core library
-│   ├── hildie_app/                # Application
-│   ├── hildie_cli/                # CLI tools
-│   └── hildie_archive_git_forks/  # Fork archiver
-├── packages/                      # Test suites
-│   ├── my-library/tests/
-│   ├── my-app/tests/
-│   ├── my-cli/tests/
-│   └── archive-git-forks/tests/
-├── tools/                         # Build macros
-├── BUILD.bazel                    # Root build file
-├── MODULE.bazel                   # Bazel dependencies
-└── pyproject.toml                 # Project metadata
+├── source/
+│   ├── hildie/                        # Multi-language source code
+│   │   ├── java/                      # Java packages (Maven Central)
+│   │   ├── go/                        # Go packages (pkg.go.dev)
+│   │   ├── rust/                      # Rust crates (crates.io)
+│   │   ├── node/                      # JavaScript/npm packages
+│   │   ├── bindings/                  # Python bindings
+│   │   │   └── python/                # PyO3 + ctypes bindings
+│   │   │       ├── hildie_bindings/   # Package source
+│   │   │       ├── examples/          # Demo scripts & notebooks
+│   │   │       └── tests/             # Binding tests
+│   │   └── cpp/                       # C++ components
+│   └── python/                        # Python build tools
+│       ├── build_bindings.py
+│       ├── regenerate_requirements.py
+│       ├── test_runners.py
+│       └── hildie.bzl
+├── docs/                              # Documentation
+│   ├── *.md                           # All documentation files
+│   ├── pyproject.toml
+│   └── BUILD.bazel
+├── packages/                          # Python package tests
+│   ├── my-library/
+│   ├── my-app/
+│   ├── my-cli/
+│   └── archive-git-forks/
+├── BUILD.bazel                        # Root build file
+├── MODULE.bazel                       # Bazel dependencies
+├── pyproject.toml                     # Project metadata
+└── README.md                          # This file
 ```
 
 ## Publishing

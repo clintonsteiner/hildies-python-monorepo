@@ -1,0 +1,13 @@
+[package]
+name = "hildie-app"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "hildie-app"
+path = "src/main.rs"
+
+[dependencies]
+hildie-lib = { path = "../hildie-lib" }

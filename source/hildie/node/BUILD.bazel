@@ -1,0 +1,20 @@
+# Node.js/npm package built with standard npm tools
+# To build: npm --prefix source/hildie/node run build
+# To publish: npm --prefix source/hildie/node publish
+
+filegroup(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+        "tsconfig.json",
+    ] + glob(
+        include = [
+            "src/**/*.ts",
+            "dist/**/*.js",
+            "dist/**/*.d.ts",
+        ],
+        allow_empty = True,
+        exclude = ["node_modules/**"],
+    ),
+    visibility = ["//visibility:public"],
+)

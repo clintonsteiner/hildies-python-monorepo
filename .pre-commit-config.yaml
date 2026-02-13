@@ -30,7 +30,7 @@ repos:
     hooks:
       - id: unittest-super-last
         name: unittest super() must be last in setUp/tearDown
-        entry: python src/hildie/check_unittest_super.py
+        entry: python source/hildie/check_unittest_super.py
         language: python
         types: [python]
         exclude: ^packages/check-unittest-super/tests/

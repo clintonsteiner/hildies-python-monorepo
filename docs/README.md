@@ -1,76 +1,91 @@
-# Hildie Documentation
+# Hildie Monorepo Documentation
 
-This directory contains the Sphinx documentation for the Hildie project.
+Welcome to Hildie, a multi-language monorepo built with Bazel.
 
-## Building the Documentation
+## Quick Links
 
-### Install Documentation Dependencies
+### Getting Started
+- **[HILDIE_NAMESPACES.md](./HILDIE_NAMESPACES.md)** - Architecture & project structure
+- **[TESTING.md](./TESTING.md)** - How to run tests
+- **[GHA_BAZEL_BUILD.md](./GHA_BAZEL_BUILD.md)** - GitHub Actions workflow
 
+### For Contributors
+- **[PYTHON_BINDINGS.md](./PYTHON_BINDINGS.md)** - Python bindings architecture
+- **[BINDINGS_TESTS_AND_EXAMPLES.md](./BINDINGS_TESTS_AND_EXAMPLES.md)** - Binding tests & examples
+- **[CPP_EXAMPLES.md](./CPP_EXAMPLES.md)** - C++ compilation & examples
+
+### Publishing & Configuration
+- **[PUBLISHING_GUIDE.md](./PUBLISHING_GUIDE.md)** - Publishing to registries (PyPI, npm, Maven, crates.io)
+- **[MAVEN_SETUP.md](./MAVEN_SETUP.md)** - Maven Central quick setup
+
+## Project Structure
+
+```
+source/
+├── hildie/           - Language implementations
+│   ├── java/        - Java packages
+│   ├── go/          - Go packages
+│   ├── rust/        - Rust packages
+│   ├── node/        - JavaScript/npm packages
+│   ├── bindings/    - Python bindings
+│   └── cpp/         - C++ components
+└── python/          - Python tools & build scripts
+```
+
+## Key Commands
+
+### Build & Test
 ```bash
-# Using uv (recommended)
-uv pip install -e ".[docs]"
+# Build all
+bazel build //source/hildie/...
 
-# Or using pip
-pip install -e ".[docs]"
+# Test all
+bazel test //...
+
+# Run specific language tests
+bazel test //source/hildie/java/...
+bazel test //source/hildie/go/...
+bazel test //source/hildie/rust/...
+bazel test //source/hildie/node/...
 ```
 
-### Build HTML Documentation
-
+### Python Bindings
 ```bash
-# From the docs directory
-cd docs
-make html
+# Build bindings
+python3 source/python/build_bindings.py --all
 
-# View the documentation
-open build/html/index.html
+# Test bindings
+pytest source/hildie/bindings/python/tests/
+
+# Run demo
+python3 source/hildie/bindings/python/examples/bindings_demo.py
 ```
 
-### Other Build Formats
-
+### Requirements
 ```bash
-make epub      # Build ePub version
-make latexpdf  # Build PDF (requires LaTeX)
-make linkcheck # Check all external links
-make clean     # Clean build directory
+# Regenerate requirements from pyproject.toml
+bazel build //:update_requirements
 ```
 
-## Documentation Structure
+## Languages Supported
 
-- `source/` - Documentation source files (reStructuredText)
-- `source/conf.py` - Sphinx configuration
-- `source/_static/` - Static files (images, CSS, etc.)
-- `source/_templates/` - Custom templates
-- `build/` - Generated documentation (git-ignored)
+- **Python** - Main monorepo language
+- **Java** - JARs published to Maven Central
+- **Go** - Binaries, auto-published to pkg.go.dev
+- **Rust** - Crates published to crates.io
+- **JavaScript/TypeScript** - npm packages published to npm registry
+- **C++** - Components with Python bindings
 
-## Writing Documentation
+## Publishing
 
-Documentation is written in reStructuredText (RST) format. See the [Sphinx documentation](https://www.sphinx-doc.org/) for more information.
+All packages are published via GitHub Actions on version tags (v*).
 
-### Quick RST Reference
+See [PUBLISHING_GUIDE.md](./PUBLISHING_GUIDE.md) for setup instructions.
 
-```rst
-Section Header
-==============
+## License
 
-Subsection
-----------
+MIT License - See LICENSE file
 
-**bold** *italic* ``code``
+---
 
-- Bullet list
-- Item 2
-
-1. Numbered list
-2. Item 2
-
-.. code-block:: python
-
-   def example():
-       return "Hello, Hildie!"
-
-.. note::
-   This is a note box
-
-.. warning::
-   This is a warning box
-```
+For detailed information, see individual documentation files listed above.

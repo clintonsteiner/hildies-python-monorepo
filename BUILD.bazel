@@ -2,12 +2,24 @@
 
 load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 load("@rules_python//python:packaging.bzl", "py_wheel")
-load("//tools:hildie.bzl", "all_package_tests", "hildie_cli")
+load("//source/python:hildie.bzl", "all_package_tests", "hildie_cli")
 
+# sh_test is a built-in rule in Bazel, so we don't need to load it
+
+# ===== Python =====
 py_library(
     name = "hildie",
-    srcs = glob(["src/hildie/**/*.py"]),
-    imports = ["src"],
+    srcs = glob(
+        ["source/hildie/**/*.py"],
+        allow_empty = True,
+        exclude = [
+            "source/hildie/java/**",
+            "source/hildie/go/**",
+            "source/hildie/rust/**",
+            "source/hildie/node/**",
+        ],
+    ),
+    imports = ["source"],
     visibility = ["//visibility:public"],
     deps = [
         "@pip//click",
@@ -17,8 +29,8 @@ py_library(
 
 py_binary(
     name = "check-unittest-super",
-    srcs = ["src/hildie/check_unittest_super.py"],
-    main = "src/hildie/check_unittest_super.py",
+    srcs = ["source/hildie/check_unittest_super.py"],
+    main = "source/hildie/check_unittest_super.py",
     visibility = ["//visibility:public"],
 )
 
@@ -38,11 +50,56 @@ py_wheel(
     distribution = "hildie",
     python_requires = ">=3.11",
     python_tag = "py3",
-    strip_path_prefixes = ["src/"],
+    strip_path_prefixes = ["source/hildie/"],
     version = "0.2.21",
     deps = [":hildie"],
 )
 
+# ===== Java =====
+alias(
+    name = "hildie-java-lib",
+    actual = "//source/hildie/java/hildie-java-lib",
+)
+
+alias(
+    name = "hildie-java-app",
+    actual = "//source/hildie/java/hildie-java-app:hildie-java-app",
+)
+
+alias(
+    name = "hildie-java-cli",
+    actual = "//source/hildie/java/hildie-java-cli:hildie-java-cli",
+)
+
+# ===== Go =====
+# Built with go build (source/hildie/go/go.mod)
+# bazel build //source/hildie/go/... to include Go sources
+filegroup(
+    name = "hildie-go",
+    srcs = glob(
+        ["source/hildie/go/**/*.go"],
+        allow_empty = True,
+    ),
+)
+
+# ===== Rust =====
+# Built with cargo (source/hildie/rust/Cargo.toml)
+# bazel build //source/hildie/rust/... to include Rust sources
+filegroup(
+    name = "hildie-rust",
+    srcs = glob(
+        ["source/hildie/rust/**/*.rs"],
+        allow_empty = True,
+    ),
+)
+
+# ===== Node.js / npm =====
+alias(
+    name = "hildie-npm",
+    actual = "//source/hildie/node:npm_package",
+)
+
+# ===== Tests =====
 all_package_tests(
     name = "all_tests",
     packages = [
@@ -53,3 +110,21 @@ all_package_tests(
         "my-library",
     ],
 )
+
+# ===== Requirements Management =====
+# Regenerate requirements files from pyproject.toml during build
+# Note: Requires uv or pip-tools installed
+# To run manually: python3 source/python/regenerate_requirements.py
+genrule(
+    name = "update_requirements",
+    srcs = [],
+    outs = ["requirements_updated"],
+    cmd = "python3 source/python/regenerate_requirements.py && touch $@",
+    local = True,
+)
+
+# ===== Language Integration Tests =====
+# All tests integrated into Bazel ecosystem:
+#   - Python tests: bazel test //packages/...
+#   - All languages: python3 source/python/test_runners.py (or ./test_all.sh)
+#   - For CI/CD: See .github/workflows/bazel.yml

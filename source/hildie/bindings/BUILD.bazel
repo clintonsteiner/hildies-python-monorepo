@@ -1,0 +1,20 @@
+# Python bindings for Rust, Go, and C++ components
+
+filegroup(
+    name = "rust_bindings",
+    srcs = [
+        "Cargo.toml",
+        "pyproject.toml",
+        "src/lib.rs",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "python_bindings",
+    srcs = glob(
+        ["python/hildie_bindings/**/*.py"],
+        allow_empty = True,
+    ),
+    visibility = ["//visibility:public"],
+)

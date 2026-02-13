@@ -1,5 +1,5 @@
 """BUILD file for hildie-library tests."""
 
-load("//tools:pytest.bzl", "package_tests")
+load("//source/python:pytest.bzl", "package_tests")
 
 package_tests()

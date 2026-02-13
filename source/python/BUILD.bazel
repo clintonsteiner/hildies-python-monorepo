@@ -1,0 +1,46 @@
+"""Bazel tooling and macros."""
+
+exports_files([
+    "pytest.bzl",
+    "hildie.bzl",
+    "test.bzl",
+    "test_runners.py",
+    "go_test_wrapper.sh",
+    "java_test_wrapper.sh",
+    "node_test_wrapper.sh",
+    "rust_test_wrapper.sh",
+    "update_version.py",
+])
+
+# Test runners - these invoke the Python test runner for each language
+genrule(
+    name = "run_java_tests",
+    srcs = ["test_runners.py"],
+    outs = ["java_test.log"],
+    cmd = "python3 $(location test_runners.py) --language java > $@ 2>&1 || true",
+    visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "run_go_tests",
+    srcs = ["test_runners.py"],
+    outs = ["go_test.log"],
+    cmd = "python3 $(location test_runners.py) --language go > $@ 2>&1 || true",
+    visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "run_rust_tests",
+    srcs = ["test_runners.py"],
+    outs = ["rust_test.log"],
+    cmd = "python3 $(location test_runners.py) --language rust > $@ 2>&1 || true",
+    visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "run_node_tests",
+    srcs = ["test_runners.py"],
+    outs = ["node_test.log"],
+    cmd = "python3 $(location test_runners.py) --language node > $@ 2>&1 || true",
+    visibility = ["//visibility:public"],
+)

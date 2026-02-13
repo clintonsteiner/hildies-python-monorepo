@@ -1,0 +1,9 @@
+# Rust builds are handled via cargo (see ../Cargo.toml)
+# To build: cargo build -p hildie-lib
+# To test: cargo test -p hildie-lib
+
+filegroup(
+    name = "hildie-lib",
+    srcs = glob(["src/**/*.rs"]),
+    visibility = ["//visibility:public"],
+)
