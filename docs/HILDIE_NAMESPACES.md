@@ -5,7 +5,7 @@ This monorepo contains the complete Hildie ecosystem across multiple programming
 ## Structure
 
 ```
-src/hildie/
+source/hildie/
 ├── __init__.py                    # Python namespace marker
 ├── _version.py                    # Shared version
 ├── hildie_app/                    # Python app
@@ -55,31 +55,31 @@ bazel build //:hildie-archive-git-forks # Python archiver tool
 
 #### Java
 ```bash
-bazel build //src/hildie/java/...                    # All Java targets
-bazel build //src/hildie/java/hildie-java-lib       # Java library
-bazel build //src/hildie/java/hildie-java-app:hildie-java-app  # Java app
-bazel build //src/hildie/java/hildie-java-cli:hildie-java-cli  # Java CLI
+bazel build //source/hildie/java/...                    # All Java targets
+bazel build //source/hildie/java/hildie-java-lib       # Java library
+bazel build //source/hildie/java/hildie-java-app:hildie-java-app  # Java app
+bazel build //source/hildie/java/hildie-java-cli:hildie-java-cli  # Java CLI
 ```
 
 #### Go
 ```bash
-bazel build //src/hildie/go/...             # All Go targets
-bazel build //src/hildie/go/lib             # Go library
-bazel build //src/hildie/go/app:hildie-go-app  # Go app
-bazel build //src/hildie/go/cli:hildie-go-cli  # Go CLI
+bazel build //source/hildie/go/...             # All Go targets
+bazel build //source/hildie/go/lib             # Go library
+bazel build //source/hildie/go/app:hildie-go-app  # Go app
+bazel build //source/hildie/go/cli:hildie-go-cli  # Go CLI
 ```
 
 #### Rust
 ```bash
-bazel build //src/hildie/rust/...                    # All Rust targets
-bazel build //src/hildie/rust/hildie-lib            # Rust library
-bazel build //src/hildie/rust/hildie-app:hildie-app # Rust app
-bazel build //src/hildie/rust/hildie-cli:hildie-cli # Rust CLI
+bazel build //source/hildie/rust/...                    # All Rust targets
+bazel build //source/hildie/rust/hildie-lib            # Rust library
+bazel build //source/hildie/rust/hildie-app:hildie-app # Rust app
+bazel build //source/hildie/rust/hildie-cli:hildie-cli # Rust CLI
 ```
 
 #### Node.js / npm
 ```bash
-bazel build //src/hildie/node:npm_package           # npm package
+bazel build //source/hildie/node:npm_package           # npm package
 ```
 
 ## Testing
@@ -97,16 +97,16 @@ bazel test //...
 bazel test //packages/...
 
 # Java
-bazel test //src/hildie/java/...
+bazel test //source/hildie/java/...
 
 # Go
-bazel test //src/hildie/go/...
+bazel test //source/hildie/go/...
 
 # Rust
-bazel test //src/hildie/rust/...
+bazel test //source/hildie/rust/...
 
 # Node.js
-npm --prefix src/hildie/node test
+npm --prefix source/hildie/node test
 ```
 
 ## Running Artifacts
@@ -119,28 +119,28 @@ bazel run //:hildie-archive-git-forks
 
 ### Java
 ```bash
-bazel run //src/hildie/java/hildie-java-app:hildie-java-app
-bazel run //src/hildie/java/hildie-java-cli:hildie-java-cli -- "Your Name"
+bazel run //source/hildie/java/hildie-java-app:hildie-java-app
+bazel run //source/hildie/java/hildie-java-cli:hildie-java-cli -- "Your Name"
 ```
 
 ### Go
 ```bash
-bazel run //src/hildie/go/app:hildie-go-app
-bazel run //src/hildie/go/cli:hildie-go-cli -- "Your Name"
+bazel run //source/hildie/go/app:hildie-go-app
+bazel run //source/hildie/go/cli:hildie-go-cli -- "Your Name"
 ```
 
 ### Rust
 ```bash
-bazel run //src/hildie/rust/hildie-app:hildie-app
-bazel run //src/hildie/rust/hildie-cli:hildie-cli -- "Your Name"
+bazel run //source/hildie/rust/hildie-app:hildie-app
+bazel run //source/hildie/rust/hildie-cli:hildie-cli -- "Your Name"
 ```
 
 ### Node.js
 ```bash
 # Build and run locally
-npm --prefix src/hildie/node run build
-npm --prefix src/hildie/node run app
-npm --prefix src/hildie/node run cli -- "Your Name"
+npm --prefix source/hildie/node run build
+npm --prefix source/hildie/node run app
+npm --prefix source/hildie/node run cli -- "Your Name"
 ```
 
 ## Publishing

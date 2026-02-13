@@ -75,8 +75,8 @@ unittest.TestCase.setUp(self)    # direct base-class call
 ## Running manually
 
 ```bash
-python src/hildie/check_unittest_super.py path/to/test_file.py
-python src/hildie/check_unittest_super.py --fix path/to/test_file.py
+python source/hildie/check_unittest_super.py path/to/test_file.py
+python source/hildie/check_unittest_super.py --fix path/to/test_file.py
 ```
 
 Or via the installed console script:

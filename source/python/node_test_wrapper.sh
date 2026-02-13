@@ -3,7 +3,7 @@
 
 set -e
 
-cd "src/hildie/node"
+cd "source/hildie/node"
 
 # Install dependencies silently
 npm install --silent

@@ -5,7 +5,7 @@ set -e
 
 IMPORTPATH=$1
 
-cd "src/hildie/go"
+cd "source/hildie/go"
 
 # Run Go tests
 go test "$IMPORTPATH"

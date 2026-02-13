@@ -1,6 +1,7 @@
 """Tests for my_cli module."""
 
 from click.testing import CliRunner
+
 from hildie.hildie_cli.main import cli
 
 

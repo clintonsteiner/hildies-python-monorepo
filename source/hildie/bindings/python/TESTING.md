@@ -19,33 +19,33 @@ Comprehensive test suite for all language bindings with:
 
 ```bash
 # Using pytest directly
-pytest src/hildie/bindings/python/tests/
+pytest source/hildie/bindings/python/tests/
 
 # Using Bazel
-bazel test //src/hildie/bindings/python/tests/
+bazel test //source/hildie/bindings/python/tests/
 
 # With verbose output
-pytest -v src/hildie/bindings/python/tests/
+pytest -v source/hildie/bindings/python/tests/
 ```
 
 ### Specific Test Class
 
 ```bash
 # Test only Rust bindings
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestRustBindings -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestRustBindings -v
 
 # Test only Go bindings
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestGoBindings -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestGoBindings -v
 
 # Test only C++ bindings
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestCppBindings -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestCppBindings -v
 ```
 
 ### Specific Test
 
 ```bash
 # Test single function
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestRustBindings::test_add_rust_basic -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestRustBindings::test_add_rust_basic -v
 ```
 
 ## Test Coverage
@@ -141,7 +141,7 @@ python3 tools/build_bindings.py --cpp
 
 **Build**:
 ```bash
-cd src/hildie/bindings
+cd source/hildie/bindings
 maturin develop
 ```
 
@@ -151,13 +151,13 @@ maturin develop
 
 **Build**:
 ```bash
-cd src/hildie/go
+cd source/hildie/go
 go build -o libhildie_go.so -buildmode=c-shared ./...
 ```
 
 **Installation**:
 ```bash
-cp libhildie_go.so src/hildie/bindings/python/hildie_bindings/lib/
+cp libhildie_go.so source/hildie/bindings/python/hildie_bindings/lib/
 ```
 
 ### C++ Bindings
@@ -166,12 +166,12 @@ cp libhildie_go.so src/hildie/bindings/python/hildie_bindings/lib/
 
 **Build**:
 ```bash
-g++ -shared -fPIC -std=c++17 -o libhildie_cpp.so src/hildie/cpp/hildie.cpp
+g++ -shared -fPIC -std=c++17 -o libhildie_cpp.so source/hildie/cpp/hildie.cpp
 ```
 
 **Installation**:
 ```bash
-cp libhildie_cpp.so src/hildie/bindings/python/hildie_bindings/lib/
+cp libhildie_cpp.so source/hildie/bindings/python/hildie_bindings/lib/
 ```
 
 ## Test Markers
@@ -203,7 +203,7 @@ test:
       run: python3 tools/build_bindings.py --all
 
     - name: Run binding tests
-      run: pytest src/hildie/bindings/python/tests/ -v
+      run: pytest source/hildie/bindings/python/tests/ -v
 ```
 
 ## Troubleshooting
@@ -236,7 +236,7 @@ python3 tools/build_bindings.py --cpp
 **Fix**:
 ```bash
 # Rebuild with maturin
-cd src/hildie/bindings
+cd source/hildie/bindings
 maturin develop
 ```
 
@@ -247,7 +247,7 @@ maturin develop
 **Fix**:
 ```bash
 # Install the package in development mode
-cd src/hildie/bindings/python
+cd source/hildie/bindings/python
 pip install -e .
 ```
 
@@ -265,10 +265,10 @@ pip install -e .
 python3 tools/build_bindings.py --all
 
 # Run tests
-pytest src/hildie/bindings/python/tests/ -v
+pytest source/hildie/bindings/python/tests/ -v
 
 # Or with Bazel
-bazel test //src/hildie/bindings/python/tests:test_bindings
+bazel test //source/hildie/bindings/python/tests:test_bindings
 ```
 
 ## Expected Test Results

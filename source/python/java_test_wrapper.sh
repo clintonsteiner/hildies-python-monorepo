@@ -7,7 +7,7 @@ TEST_CLASS=$1
 shift
 SRCS="$@"
 
-BASEDIR="src/hildie/java/hildie-java-lib"
+BASEDIR="source/hildie/java/hildie-java-lib"
 
 if [ ! -d "$BASEDIR" ]; then
     echo "Error: Cannot find Java test directory"

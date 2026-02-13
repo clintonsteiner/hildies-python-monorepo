@@ -145,7 +145,7 @@ git push origin v0.1.1
 
 ## Files Updated for Java Publishing
 
-- ✅ `src/hildie/java/hildie-java-lib/pom.xml` - Maven configuration
+- ✅ `source/hildie/java/hildie-java-lib/pom.xml` - Maven configuration
 - ✅ `.github/workflows/bazel.yml` - GitHub Actions workflow
 - ✅ `PUBLISHING_GUIDE.md` - Publishing documentation
 

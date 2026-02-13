@@ -5,7 +5,7 @@ set -e
 
 PACKAGE=$1
 
-cd "src/hildie/rust"
+cd "source/hildie/rust"
 
 # Run Rust tests for specific package or all
 if [ -z "$PACKAGE" ]; then

@@ -10,7 +10,7 @@ This document indexes all test files and examples for the Hildie Python bindings
 
 ### Test Files
 
-#### `src/hildie/bindings/python/tests/test_bindings.py`
+#### `source/hildie/bindings/python/tests/test_bindings.py`
 
 **Comprehensive pytest test suite** with 31+ tests covering all bindings.
 
@@ -23,7 +23,7 @@ This document indexes all test files and examples for the Hildie Python bindings
 
 **Run Tests**:
 ```bash
-pytest src/hildie/bindings/python/tests/test_bindings.py -v
+pytest source/hildie/bindings/python/tests/test_bindings.py -v
 ```
 
 **Key Features**:
@@ -36,7 +36,7 @@ pytest src/hildie/bindings/python/tests/test_bindings.py -v
 
 ### Example Files
 
-#### `src/hildie/bindings/python/examples/bindings_demo.py`
+#### `source/hildie/bindings/python/examples/bindings_demo.py`
 
 **Interactive demonstration script** showing all bindings in action.
 
@@ -49,12 +49,12 @@ pytest src/hildie/bindings/python/tests/test_bindings.py -v
 
 **Run Demo**:
 ```bash
-python3 src/hildie/bindings/python/examples/bindings_demo.py
+python3 source/hildie/bindings/python/examples/bindings_demo.py
 ```
 
 **Output**: Comprehensive output showing all function calls and results
 
-#### `src/hildie/cpp/example.cpp`
+#### `source/hildie/cpp/example.cpp`
 
 **C++ executable example** demonstrating library usage and Python integration.
 
@@ -68,7 +68,7 @@ python3 src/hildie/bindings/python/examples/bindings_demo.py
 
 **Compile**:
 ```bash
-g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildie.cpp
+g++ -std=c++17 -o hildie_example source/hildie/cpp/example.cpp source/hildie/cpp/hildie.cpp
 ```
 
 **Run**:
@@ -78,7 +78,7 @@ g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildi
 
 ### Documentation Files
 
-#### `src/hildie/bindings/python/README.md`
+#### `source/hildie/bindings/python/README.md`
 
 **Comprehensive bindings reference** and getting started guide.
 
@@ -97,7 +97,7 @@ g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildi
 
 **Use When**: Learning how to use the bindings
 
-#### `src/hildie/bindings/python/TESTING.md`
+#### `source/hildie/bindings/python/TESTING.md`
 
 **Testing guide** covering test structure, execution, and troubleshooting.
 
@@ -115,7 +115,7 @@ g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildi
 
 **Use When**: Running or writing tests
 
-#### `src/hildie/cpp/EXAMPLES.md`
+#### `source/hildie/cpp/EXAMPLES.md`
 
 **C++ examples and API documentation** with compilation and usage details.
 
@@ -136,19 +136,19 @@ g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildi
 
 ### Configuration Files
 
-#### `src/hildie/bindings/python/BUILD.bazel`
+#### `source/hildie/bindings/python/BUILD.bazel`
 Bazel configuration for Python bindings library.
 
-#### `src/hildie/bindings/python/tests/BUILD.bazel`
+#### `source/hildie/bindings/python/tests/BUILD.bazel`
 Bazel configuration for test suite.
 
-#### `src/hildie/bindings/python/setup.py`
+#### `source/hildie/bindings/python/setup.py`
 Python setuptools configuration for installation.
 
-#### `src/hildie/bindings/python/tests/__init__.py`
+#### `source/hildie/bindings/python/tests/__init__.py`
 Python package marker for tests directory.
 
-#### `src/hildie/bindings/python/examples/__init__.py`
+#### `source/hildie/bindings/python/examples/__init__.py`
 Python package marker for examples directory.
 
 ## Quick Start
@@ -172,23 +172,23 @@ python3 tools/build_bindings.py --cpp
 pip install pytest
 
 # Run all tests
-pytest src/hildie/bindings/python/tests/test_bindings.py -v
+pytest source/hildie/bindings/python/tests/test_bindings.py -v
 
 # Run specific test class
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestRustBindings -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestRustBindings -v
 
 # Run with Bazel
-bazel test //src/hildie/bindings/python/tests:test_bindings
+bazel test //source/hildie/bindings/python/tests:test_bindings
 ```
 
 ### 3. Run Examples
 
 ```bash
 # Python demo
-python3 src/hildie/bindings/python/examples/bindings_demo.py
+python3 source/hildie/bindings/python/examples/bindings_demo.py
 
 # C++ example
-g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildie.cpp
+g++ -std=c++17 -o hildie_example source/hildie/cpp/example.cpp source/hildie/cpp/hildie.cpp
 ./hildie_example
 ```
 
@@ -247,7 +247,7 @@ g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildi
 ## Directory Structure
 
 ```
-src/hildie/
+source/hildie/
 ├── bindings/
 │   └── python/
 │       ├── hildie_bindings/          # Main package
@@ -282,29 +282,29 @@ root/
 
 ```bash
 # All tests
-pytest src/hildie/bindings/python/tests/test_bindings.py -v
+pytest source/hildie/bindings/python/tests/test_bindings.py -v
 
 # With coverage
-pytest src/hildie/bindings/python/tests/test_bindings.py --cov=hildie_bindings
+pytest source/hildie/bindings/python/tests/test_bindings.py --cov=hildie_bindings
 
 # Verbose with detailed output
-pytest src/hildie/bindings/python/tests/test_bindings.py -vv -s
+pytest source/hildie/bindings/python/tests/test_bindings.py -vv -s
 ```
 
 ### Bazel
 
 ```bash
 # All tests
-bazel test //src/hildie/bindings/python/tests:test_bindings
+bazel test //source/hildie/bindings/python/tests:test_bindings
 
 # With output
-bazel test //src/hildie/bindings/python/tests:test_bindings --test_output=all
+bazel test //source/hildie/bindings/python/tests:test_bindings --test_output=all
 ```
 
 ### Manual Python
 
 ```bash
-cd src/hildie/bindings/python
+cd source/hildie/bindings/python
 python -m pytest tests/test_bindings.py -v
 ```
 
@@ -375,7 +375,7 @@ python3 tools/build_bindings.py --all
 
 Install the package:
 ```bash
-cd src/hildie/bindings/python
+cd source/hildie/bindings/python
 pip install -e .
 ```
 
@@ -388,9 +388,9 @@ Check system requirements:
 
 ## References
 
-- [Python Bindings README](src/hildie/bindings/python/README.md)
-- [Testing Guide](src/hildie/bindings/python/TESTING.md)
-- [C++ Examples](src/hildie/cpp/EXAMPLES.md)
+- [Python Bindings README](source/hildie/bindings/python/README.md)
+- [Testing Guide](source/hildie/bindings/python/TESTING.md)
+- [C++ Examples](source/hildie/cpp/EXAMPLES.md)
 - [Hildie Namespaces](HILDIE_NAMESPACES.md)
 - [Build Bindings Script](tools/build_bindings.py)
 

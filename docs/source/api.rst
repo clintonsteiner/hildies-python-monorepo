@@ -10,7 +10,7 @@ This section will contain the API documentation for Hildie packages.
 check-unittest-super
 --------------------
 
-``src/hildie/check_unittest_super.py``
+``source/hildie/check_unittest_super.py``
 
 .. code-block:: text
 

@@ -1,18 +1,42 @@
-"""Documentation build configuration."""
+"""Documentation build using Sphinx."""
 
+load("@rules_python//python:defs.bzl", "py_binary")
+
+# Lock file exposed for MODULE.bazel pip_docs hub
+exports_files(["requirements_lock.txt"])
+
+# All Sphinx source files
 filegroup(
-    name = "docs",
+    name = "docs_srcs",
     srcs = glob(
-        ["*.md"],
+        ["source/**"],
         allow_empty = True,
     ),
     visibility = ["//visibility:public"],
 )
 
-filegroup(
-    name = "docs_config",
-    srcs = [
-        "pyproject.toml",
+# Sphinx wrapper binary — deps come from the pip_docs hub
+py_binary(
+    name = "sphinx_build_bin",
+    srcs = ["sphinx_build.py"],
+    main = "sphinx_build.py",
+    deps = [
+        "@pip_docs//sphinx",
+        "@pip_docs//sphinx_rtd_theme",
     ],
-    visibility = ["//visibility:public"],
+)
+
+# Build HTML docs and package as a tar.gz artifact
+genrule(
+    name = "html",
+    srcs = [":docs_srcs"],
+    outs = ["html_docs.tar.gz"],
+    cmd = """
+        OUT=$$(mktemp -d)
+        $(execpath :sphinx_build_bin) -b html docs/source $$OUT -q
+        tar -czf $@ -C $$OUT .
+        rm -rf $$OUT
+    """,
+    local = True,
+    tools = [":sphinx_build_bin"],
 )

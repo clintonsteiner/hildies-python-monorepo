@@ -52,6 +52,11 @@ def update_version(version: str) -> None:
             root / "docs/pyproject.toml",
             lambda content: re.sub(r'version = "[0-9.]+"', f'version = "{version}"', content),
         ),
+        # Sphinx conf.py
+        (
+            root / "docs/source/conf.py",
+            lambda content: re.sub(r'release = "[0-9.]+"', f'release = "{version}"', content),
+        ),
     ]
 
     updated_count = 0

@@ -2,7 +2,7 @@
 Python bindings for Hildie Go library
 
 Uses ctypes to call compiled Go shared library.
-Requires: go build -o libhildie_go.so -buildmode=c-shared ./src/hildie/go
+Requires: go build -o libhildie_go.so -buildmode=c-shared ./source/hildie/go
 """
 
 import ctypes

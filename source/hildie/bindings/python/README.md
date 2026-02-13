@@ -11,7 +11,7 @@ Python bindings for Hildie components written in Rust, Go, and C++.
 python3 tools/build_bindings.py --all
 
 # Install Python bindings package
-cd src/hildie/bindings/python
+cd source/hildie/bindings/python
 pip install -e .
 ```
 
@@ -49,19 +49,19 @@ print(compute_factorial(5))     # 120
 
 ```bash
 # Run interactive demonstration
-python3 src/hildie/bindings/python/examples/bindings_demo.py
+python3 source/hildie/bindings/python/examples/bindings_demo.py
 ```
 
 ### Run Tests
 
 ```bash
 # Run all tests
-pytest src/hildie/bindings/python/tests/ -v
+pytest source/hildie/bindings/python/tests/ -v
 
 # Run specific language tests
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestRustBindings -v
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestGoBindings -v
-pytest src/hildie/bindings/python/tests/test_bindings.py::TestCppBindings -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestRustBindings -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestGoBindings -v
+pytest source/hildie/bindings/python/tests/test_bindings.py::TestCppBindings -v
 ```
 
 ## Bindings Reference
@@ -219,9 +219,9 @@ Compute factorial of n.
 Uses **PyO3** - a framework for creating Python modules from Rust.
 
 ```
-Rust code (src/hildie/rust/)
+Rust code (source/hildie/rust/)
     ↓
-PyO3 bindings (src/hildie/bindings/src/lib.rs)
+PyO3 bindings (source/hildie/bindings/src/lib.rs)
     ↓
 Native Python module (hildie_bindings.so)
     ↓
@@ -239,7 +239,7 @@ Python functions
 Uses **ctypes** - Python's FFI for C libraries. Go functions are wrapped in C FFI.
 
 ```
-Go code (src/hildie/go/)
+Go code (source/hildie/go/)
     ↓
 C-compatible wrapper
     ↓
@@ -260,7 +260,7 @@ Python functions
 Uses **ctypes** - Python's FFI for C libraries. C++ functions are exported as C.
 
 ```
-C++ code (src/hildie/cpp/)
+C++ code (source/hildie/cpp/)
     ↓
 C interface (hildie.h)
     ↓
@@ -488,7 +488,7 @@ TypeError: 'str' object cannot be interpreted as an integer
 
 **Solution**:
 ```bash
-cd src/hildie/bindings/python
+cd source/hildie/bindings/python
 pip install -e .
 ```
 
@@ -515,7 +515,7 @@ This is normal behavior. Optional bindings are skipped if not compiled:
 python3 tools/build_bindings.py --all
 
 # Re-run tests
-pytest src/hildie/bindings/python/tests/ -v
+pytest source/hildie/bindings/python/tests/ -v
 ```
 
 ## License

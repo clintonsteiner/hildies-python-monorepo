@@ -78,7 +78,7 @@ def demo_go_bindings():
     except ImportError as e:
         print(f"⚠️  Go bindings not available: {e}")
         print(
-            "   Build with: cd src/hildie/go && go build -buildmode=c-shared -o libhildie_go.so ./..."
+            "   Build with: cd source/hildie/go && go build -buildmode=c-shared -o libhildie_go.so ./..."
         )
 
 
@@ -126,7 +126,7 @@ def demo_cpp_bindings():
 
     except ImportError as e:
         print(f"⚠️  C++ bindings not available: {e}")
-        print("   Build with: g++ -shared -fPIC -o libhildie_cpp.so src/hildie/cpp/hildie.cpp")
+        print("   Build with: g++ -shared -fPIC -o libhildie_cpp.so source/hildie/cpp/hildie.cpp")
 
 
 def demo_cross_language_consistency():

@@ -96,7 +96,7 @@ python3 tools/test_runners.py
 
 ### Java Tests
 ```
-Location: src/hildie/java/hildie-java-lib/src/test/java/
+Location: source/hildie/java/hildie-java-lib/src/test/java/
 Classes:
   - HildieLibraryTest.testGreet()
   - HildieLibraryTest.testAdd()
@@ -104,7 +104,7 @@ Classes:
 
 ### Go Tests
 ```
-Location: src/hildie/go/lib/lib_test.go
+Location: source/hildie/go/lib/lib_test.go
 Tests:
   - TestGreet
   - TestAdd
@@ -112,7 +112,7 @@ Tests:
 
 ### Rust Tests
 ```
-Location: src/hildie/rust/hildie-lib/src/lib.rs
+Location: source/hildie/rust/hildie-lib/src/lib.rs
 Tests (inline):
   - test_greet()
   - test_add()
@@ -120,7 +120,7 @@ Tests (inline):
 
 ### Node.js Tests
 ```
-Location: src/hildie/node/src/lib.test.ts
+Location: source/hildie/node/src/lib.test.ts
 Tests:
   - greet()
   - add()
@@ -134,9 +134,9 @@ Tests:
 ./test_all.sh
 
 # Specific language
-cd src/hildie/rust && cargo test
-cd src/hildie/go && go test ./...
-cd src/hildie/node && npm test
+cd source/hildie/rust && cargo test
+cd source/hildie/go && go test ./...
+cd source/hildie/node && npm test
 ```
 
 ### Watch for test output
@@ -147,7 +147,7 @@ python3 tools/test_runners.py 2>&1 | grep -E "PASSED|FAILED|Error"
 ### Debug a failing test
 ```bash
 # Run specific language directly
-cd src/hildie/java/hildie-java-lib
+cd source/hildie/java/hildie-java-lib
 javac -d bin src/main/java/io/hildie/HildieLibrary.java src/test/java/io/hildie/HildieLibraryTest.java
 java -ea -cp bin io.hildie.HildieLibraryTest
 ```
@@ -170,7 +170,7 @@ java -ea -cp bin io.hildie.HildieLibraryTest
 Add test file to `packages/*/tests/test_*.py`
 
 ### Java
-Add test class to `src/hildie/java/hildie-java-lib/src/test/java/`
+Add test class to `source/hildie/java/hildie-java-lib/src/test/java/`
 
 ### Go
 Add `*_test.go` file to test directory

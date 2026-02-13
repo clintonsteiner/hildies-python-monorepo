@@ -13,7 +13,7 @@ The bindings system provides a clean Python interface to high-performance native
 ## Structure
 
 ```
-src/hildie/
+source/hildie/
 ├── bindings/                    # Python bindings (main package)
 │   ├── Cargo.toml              # Rust project for PyO3 bindings
 │   ├── pyproject.toml          # Python build configuration
@@ -40,7 +40,7 @@ src/hildie/
 
 ```bash
 # Build Rust bindings
-cd src/hildie/bindings
+cd source/hildie/bindings
 maturin develop
 
 # Build Go bindings
@@ -96,13 +96,13 @@ print(compute_factorial(5))          # 120
 - ✅ Type-safe at compile time
 
 **Files:**
-- `src/hildie/bindings/Cargo.toml` - Rust project
-- `src/hildie/bindings/pyproject.toml` - Python metadata
-- `src/hildie/bindings/src/lib.rs` - PyO3 bindings
+- `source/hildie/bindings/Cargo.toml` - Rust project
+- `source/hildie/bindings/pyproject.toml` - Python metadata
+- `source/hildie/bindings/src/lib.rs` - PyO3 bindings
 
 **Build:**
 ```bash
-cd src/hildie/bindings
+cd source/hildie/bindings
 pip install maturin
 maturin develop          # For development
 maturin build --release  # For distribution
@@ -131,12 +131,12 @@ sum_result = add_rust(5, 10)  # Returns Python int
 - ✅ Simple FFI
 
 **Files:**
-- `src/hildie/go/lib/` - Go source
-- `src/hildie/bindings/python/hildie_bindings/go_bindings.py` - ctypes wrapper
+- `source/hildie/go/lib/` - Go source
+- `source/hildie/bindings/python/hildie_bindings/go_bindings.py` - ctypes wrapper
 
 **Build:**
 ```bash
-cd src/hildie/go
+cd source/hildie/go
 go build -o libhildie_go.so -buildmode=c-shared ./...
 # Copy to bindings location
 cp libhildie_go.so ../bindings/python/hildie_bindings/lib/
@@ -165,13 +165,13 @@ result = greet_go("Gopher")  # Calls Go function
 - ✅ Maximum compatibility
 
 **Files:**
-- `src/hildie/cpp/hildie.h` - C interface header
-- `src/hildie/cpp/hildie.cpp` - C++ implementation
-- `src/hildie/bindings/python/hildie_bindings/cpp_bindings.py` - ctypes wrapper
+- `source/hildie/cpp/hildie.h` - C interface header
+- `source/hildie/cpp/hildie.cpp` - C++ implementation
+- `source/hildie/bindings/python/hildie_bindings/cpp_bindings.py` - ctypes wrapper
 
 **Build:**
 ```bash
-cd src/hildie/cpp
+cd source/hildie/cpp
 g++ -shared -fPIC -o libhildie_cpp.so hildie.cpp
 # Copy to bindings location
 cp libhildie_cpp.so ../bindings/python/hildie_bindings/lib/
@@ -197,7 +197,7 @@ result = compute_factorial(5)  # Returns 120
 ### Bazel Build
 
 ```bazel
-# In src/hildie/bindings/BUILD.bazel
+# In source/hildie/bindings/BUILD.bazel
 filegroup(
     name = "rust_bindings",
     srcs = glob(["src/**/*.rs", "*.toml"]),

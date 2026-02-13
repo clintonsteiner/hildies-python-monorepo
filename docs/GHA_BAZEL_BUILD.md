@@ -14,7 +14,7 @@ Updated GitHub Actions workflow to use Bazel for building everything.
 
 ### New Workflow Structure
 - ✅ `test` job (Bazel: `bazel test //...`)
-- ✅ `build` job (Bazel: `bazel build //src/hildie/...`)
+- ✅ `build` job (Bazel: `bazel build //source/hildie/...`)
 - ✅ `publish` job (Uses Bazel-built artifacts)
 
 ## Key Improvements
@@ -27,7 +27,7 @@ Updated GitHub Actions workflow to use Bazel for building everything.
 # New unified build
 - name: Build all artifacts with Bazel
   run: |
-    bazel build //src/hildie/...
+    bazel build //source/hildie/...
     bazel build //:wheel
 ```
 
@@ -53,18 +53,18 @@ All artifacts collected in one place:
     cp bazel-bin/hildie-*.whl dist/ || true
 
     # Java JAR files
-    find bazel-bin/src/hildie/java -name "*.jar" -exec cp {} dist/java/ \; || true
+    find bazel-bin/source/hildie/java -name "*.jar" -exec cp {} dist/java/ \; || true
 
     # Go binaries
-    cp bazel-bin/src/hildie/go/app/hildie-go-app dist/go/ || true
-    cp bazel-bin/src/hildie/go/cli/hildie-go-cli dist/go/ || true
+    cp bazel-bin/source/hildie/go/app/hildie-go-app dist/go/ || true
+    cp bazel-bin/source/hildie/go/cli/hildie-go-cli dist/go/ || true
 
     # Rust binaries
-    cp bazel-bin/src/hildie/rust/hildie-app/hildie-app dist/rust/ || true
-    cp bazel-bin/src/hildie/rust/hildie-cli/hildie-cli dist/rust/ || true
+    cp bazel-bin/source/hildie/rust/hildie-app/hildie-app dist/rust/ || true
+    cp bazel-bin/source/hildie/rust/hildie-cli/hildie-cli dist/rust/ || true
 
     # npm package
-    cp -r bazel-bin/src/hildie/node/npm_package dist/npm/ || true
+    cp -r bazel-bin/source/hildie/node/npm_package dist/npm/ || true
 ```
 
 ### 4. Reduced Dependencies
@@ -141,7 +141,7 @@ bazel test //... --test_output=short
 ### Building
 ```bash
 # Build all source code
-bazel build //src/hildie/...
+bazel build //source/hildie/...
 
 # Build Python wheel
 bazel build //:wheel
@@ -150,11 +150,11 @@ bazel build //:wheel
 ### Artifact Locations
 ```
 bazel-bin/hildie-*.whl                    # Python wheel
-bazel-bin/src/hildie/java/*/*.jar         # Java JARs
-bazel-bin/src/hildie/go/app/*             # Go app binary
-bazel-bin/src/hildie/go/cli/*             # Go CLI binary
-bazel-bin/src/hildie/rust/*/               # Rust binaries
-bazel-bin/src/hildie/node/npm_package/    # npm package
+bazel-bin/source/hildie/java/*/*.jar         # Java JARs
+bazel-bin/source/hildie/go/app/*             # Go app binary
+bazel-bin/source/hildie/go/cli/*             # Go CLI binary
+bazel-bin/source/hildie/rust/*/               # Rust binaries
+bazel-bin/source/hildie/node/npm_package/    # npm package
 ```
 
 ## Setup Requirements
@@ -184,7 +184,7 @@ To verify the workflow logic locally:
 bazel test //...
 
 # Build all artifacts
-bazel build //src/hildie/...
+bazel build //source/hildie/...
 
 # Build Python wheel
 bazel build //:wheel
@@ -196,7 +196,7 @@ bazel build //:wheel
 
 Check:
 1. Bazel query works: `bazel query "//..."`
-2. Local build succeeds: `bazel build //src/hildie/...`
+2. Local build succeeds: `bazel build //source/hildie/...`
 3. BUILD files are correct (check for glob errors)
 
 ### Artifacts not found in publish
@@ -204,16 +204,16 @@ Check:
 Verify artifact paths in `dist/` directory:
 ```bash
 bazel build //...
-ls -la bazel-bin/src/hildie/java/
-ls -la bazel-bin/src/hildie/go/
-ls -la bazel-bin/src/hildie/rust/
-ls -la bazel-bin/src/hildie/node/
+ls -la bazel-bin/source/hildie/java/
+ls -la bazel-bin/source/hildie/go/
+ls -la bazel-bin/source/hildie/rust/
+ls -la bazel-bin/source/hildie/node/
 ```
 
 ### npm publish fails
 
 Check:
-- npm package built: `ls -la bazel-bin/src/hildie/node/npm_package/`
+- npm package built: `ls -la bazel-bin/source/hildie/node/npm_package/`
 - OIDC token obtained in step
 - npm registry URL correct
 

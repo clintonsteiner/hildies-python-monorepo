@@ -9,7 +9,7 @@ Complete refactoring of the Hildie monorepo to organize source code, tools, and 
 **Before:**
 ```
 .
-├── src/hildie/          (source code)
+├── source/hildie/          (source code)
 ├── tools/               (Python scripts)
 ├── packages/            (old Python packages)
 ├── docs/                (existing docs)
@@ -64,7 +64,7 @@ Complete refactoring of the Hildie monorepo to organize source code, tools, and 
 ```python
 # Before
 load("//tools:hildie.bzl", "all_package_tests")
-alias(name = "hildie-java-lib", actual = "//src/hildie/java/hildie-java-lib")
+alias(name = "hildie-java-lib", actual = "//source/hildie/java/hildie-java-lib")
 
 # After
 load("//source/python:hildie.bzl", "all_package_tests")
@@ -137,8 +137,8 @@ bazel build //:update_requirements
 **Updated Paths:**
 ```yaml
 # Before
-bazel build //src/hildie/...
-find bazel-bin/src/hildie/java -name "*.jar"
+bazel build //source/hildie/...
+find bazel-bin/source/hildie/java -name "*.jar"
 
 # After
 bazel build //source/hildie/...
@@ -182,7 +182,7 @@ Run with: `bazel build //:update_requirements`
 
 ### Before
 ```bash
-bazel build //src/hildie/...
+bazel build //source/hildie/...
 bazel test //...
 python3 tools/build_bindings.py --all
 python3 tools/test_runners.py

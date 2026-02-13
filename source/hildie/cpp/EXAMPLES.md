@@ -14,13 +14,13 @@ This directory contains examples demonstrating the Hildie C++ library and its Py
 
 ```bash
 # Using g++
-g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildie.cpp
+g++ -std=c++17 -o hildie_example source/hildie/cpp/example.cpp source/hildie/cpp/hildie.cpp
 
 # Using clang++
-clang++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildie.cpp
+clang++ -std=c++17 -o hildie_example source/hildie/cpp/example.cpp source/hildie/cpp/hildie.cpp
 
 # With optimization
-g++ -std=c++17 -O2 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildie.cpp
+g++ -std=c++17 -O2 -o hildie_example source/hildie/cpp/example.cpp source/hildie/cpp/hildie.cpp
 ```
 
 ### Run Example
@@ -108,23 +108,23 @@ Import and use the bindings:
 
 ```bash
 # Compile to shared library (.so for Linux/macOS, .dll for Windows)
-g++ -shared -fPIC -std=c++17 -o libhildie_cpp.so src/hildie/cpp/hildie.cpp
+g++ -shared -fPIC -std=c++17 -o libhildie_cpp.so source/hildie/cpp/hildie.cpp
 
 # macOS may use .dylib instead
-g++ -shared -fPIC -std=c++17 -o libhildie_cpp.dylib src/hildie/cpp/hildie.cpp
+g++ -shared -fPIC -std=c++17 -o libhildie_cpp.dylib source/hildie/cpp/hildie.cpp
 
 # Windows may use .dll
-g++ -shared -fPIC -std=c++17 -o libhildie_cpp.dll src/hildie/cpp/hildie.cpp
+g++ -shared -fPIC -std=c++17 -o libhildie_cpp.dll source/hildie/cpp/hildie.cpp
 ```
 
 ### Copy to Python Bindings Location
 
 ```bash
 # Create lib directory if needed
-mkdir -p src/hildie/bindings/python/hildie_bindings/lib
+mkdir -p source/hildie/bindings/python/hildie_bindings/lib
 
 # Copy compiled library
-cp libhildie_cpp.so src/hildie/bindings/python/hildie_bindings/lib/
+cp libhildie_cpp.so source/hildie/bindings/python/hildie_bindings/lib/
 
 # Or use build script
 python3 tools/build_bindings.py --cpp
@@ -379,7 +379,7 @@ def test_multiply_cpp_basic(self):
 
 ```bash
 # Compile example
-g++ -std=c++17 -o hildie_example src/hildie/cpp/example.cpp src/hildie/cpp/hildie.cpp
+g++ -std=c++17 -o hildie_example source/hildie/cpp/example.cpp source/hildie/cpp/hildie.cpp
 
 # Run example
 ./hildie_example

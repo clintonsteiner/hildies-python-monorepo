@@ -326,7 +326,7 @@ In `.github/workflows/bazel.yml`:
     MAVEN_PUBLISH_USER: ${{ secrets.MAVEN_PUBLISH_USER }}
     MAVEN_PUBLISH_PASSWORD: ${{ secrets.MAVEN_PUBLISH_PASSWORD }}
   run: |
-    cd src/hildie/java/hildie-java-lib
+    cd source/hildie/java/hildie-java-lib
     mvn clean deploy \
       -Drevision=${{ env.VERSION }} \
       -Dgpg.skip=false \
@@ -339,7 +339,7 @@ In `.github/workflows/bazel.yml`:
 
 ```bash
 # Build the JAR
-cd src/hildie/java/hildie-java-lib
+cd source/hildie/java/hildie-java-lib
 mvn clean package
 
 # Publish to Maven Central
@@ -499,7 +499,7 @@ CARGO_REGISTRY_TOKEN=<your-token>
   env:
     CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
   run: |
-    cd src/hildie/rust
+    cd source/hildie/rust
     # Publish each crate
     cargo publish -p hildie-lib --allow-dirty
     cargo publish -p hildie-app --allow-dirty
@@ -601,7 +601,7 @@ Go modules use **git tags as the source of truth**. pkg.go.dev indexes modules a
 
 **Step 1: Create go.mod**
 
-Already done at: `src/hildie/go/go.mod`
+Already done at: `source/hildie/go/go.mod`
 ```
 module github.com/clintonsteiner/hildie-go
 
@@ -715,17 +715,17 @@ python -m twine upload bazel-bin/hildie-*.whl
 #### Node.js
 ```bash
 # Build package
-bazel build //src/hildie/node:npm_package
+bazel build //source/hildie/node:npm_package
 
 # Publish to npm
-cd bazel-bin/src/hildie/node/npm_package
+cd bazel-bin/source/hildie/node/npm_package
 npm publish --access public
 ```
 
 #### Java
 ```bash
 # Build JAR
-bazel build //src/hildie/java/...
+bazel build //source/hildie/java/...
 
 # Publish to Maven Central (requires GPG signing)
 mvn deploy -DrepositoryId=central \
@@ -735,7 +735,7 @@ mvn deploy -DrepositoryId=central \
 #### Rust
 ```bash
 # Build and publish crates
-cd src/hildie/rust
+cd source/hildie/rust
 
 # Publish hildie-lib
 cargo publish -p hildie-lib
@@ -784,9 +784,9 @@ git push origin v0.1.0
 All versions are managed through:
 1. **Source of truth**: Git tags (v0.1.0)
 2. **Updated files**:
-   - `/src/hildie/_version.py` (Python)
-   - `/src/hildie/node/package.json` (npm)
-   - `/src/hildie/rust/Cargo.toml` (Rust)
+   - `/source/hildie/_version.py` (Python)
+   - `/source/hildie/node/package.json` (npm)
+   - `/source/hildie/rust/Cargo.toml` (Rust)
    - `BUILD.bazel` (Python wheel version)
 
 Run before publishing:

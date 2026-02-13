@@ -24,11 +24,11 @@ pip.parse(
     requirements_lock = "//:requirements_lock.txt",
 )
 
-# Documentation dependencies (from pyproject.toml with docs extras)
+# Documentation dependencies (from docs/pyproject.toml)
 pip.parse(
     hub_name = "pip_docs",
     python_version = "3.12",
-    requirements_lock = "//:requirements_docs_lock.txt",
+    requirements_lock = "//docs:requirements_lock.txt",
 )
 use_repo(pip, "pip", "pip_docs")
 
@@ -48,7 +48,7 @@ maven.install(
 use_repo(maven, "maven")
 
 # ===== Go =====
-# Go builds are handled via go build (src/hildie/go/go.mod)
+# Go builds are handled via go build (source/hildie/go/go.mod)
 # Bazel is used for artifact collection and publishing
 
 # ===== Rust =====

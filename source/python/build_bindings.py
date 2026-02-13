@@ -16,10 +16,10 @@ class BindingsBuilder:
     """Builds Python bindings for Rust, Go, and C++ components."""
 
     def __init__(self):
-        self.repo_root = Path(__file__).parent.parent
-        self.bindings_dir = self.repo_root / "src/hildie/bindings"
-        self.go_dir = self.repo_root / "src/hildie/go"
-        self.cpp_dir = self.repo_root / "src/hildie/cpp"
+        self.repo_root = Path(__file__).parent.parent.parent
+        self.bindings_dir = self.repo_root / "source/hildie/bindings"
+        self.go_dir = self.repo_root / "source/hildie/go"
+        self.cpp_dir = self.repo_root / "source/hildie/cpp"
         self.lib_dir = self.bindings_dir / "python/hildie_bindings/lib"
 
     def run(self, cmd, cwd=None, description=""):

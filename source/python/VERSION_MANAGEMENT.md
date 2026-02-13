@@ -6,11 +6,11 @@ This document describes how versions are managed in the Hildie monorepo.
 
 Version information is stored in **three places only**:
 
-1. **`src/hildie/_version.py`** - Python source of truth (all packages import from here)
+1. **`source/hildie/_version.py`** - Python source of truth (all packages import from here)
 2. **`BUILD.bazel`** - Bazel build configuration (for wheel generation)
 3. **`docs/source/conf.py`** - Documentation configuration
 
-All package `__init__.py` files import `__version__` from `src/hildie/_version.py`, eliminating duplication.
+All package `__init__.py` files import `__version__` from `source/hildie/_version.py`, eliminating duplication.
 
 ## Manual Version Updates
 
@@ -53,7 +53,7 @@ The workflow takes care of the rest!
 ## Version File Structure
 
 ```
-src/hildie/
+source/hildie/
 ├── _version.py              # Single source of truth ✓
 ├── __init__.py              # Imports from _version.py
 ├── hildie_app/

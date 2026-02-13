@@ -15,7 +15,7 @@ before test-specific state is initialised.
 
 **Location:** ``packages/check-unittest-super``
 
-**Source:** ``src/hildie/check_unittest_super.py``
+**Source:** ``source/hildie/check_unittest_super.py``
 
 Use in other repos by referencing this repo's tag:
 
