@@ -2,11 +2,11 @@ name: Bazel
 
 on:
   push:
-    branches: [master, develop]
+    branches: [master]
     tags:
       - "v*"
   pull_request:
-    branches: [master, develop]
+    branches: [master]
 
 jobs:
   test:

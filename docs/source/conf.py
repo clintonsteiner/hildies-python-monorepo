@@ -54,7 +54,6 @@ html_context = {
     "github_user": "clintonsteiner",  # Username
     "github_repo": "hildies-python-monorepo",  # Repo name
     "github_version": "master",  # Version
-    "conf_py_path": "/docs/source/",
 }
 
 # -- Intersphinx configuration -----------------------------------------------
